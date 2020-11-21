@@ -1,0 +1,1 @@
+﻿$("#tbProfessores .excluir").click(function (e) { var $this = $(this); $.get("/professor/excluir/" + $(this).data("id"), function (e) { if (e.erro == 0) { $this.closest('tr').remove(); } }) });

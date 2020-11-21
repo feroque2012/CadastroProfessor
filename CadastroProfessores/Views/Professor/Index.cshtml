@@ -1,0 +1,56 @@
+﻿@model IEnumerable<CadastroProfessores.Model.Professor>
+
+@{
+    ViewData["Title"] = "Professores";
+}
+
+<h1>Professores</h1>
+
+<p>
+    <a asp-action="Cadastro">Cadastrar Professor</a>
+</p>
+
+@if (TempData["Erro"] == "")
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger" role="alert">
+                This is a danger alert—check it out!
+            </div>
+        </div>
+    </div>
+}
+<table class="table" id="tbProfessores">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Cadastro", new { Id = item.Id }) |
+                    @Html.ActionLink("Alunos", "Index", "Aluno", new { idProfessor = item.Id }) |
+                    <a data-id="@item.Id" href="#" class="excluir">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/professor.js"></script>

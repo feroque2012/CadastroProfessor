@@ -1,0 +1,86 @@
+﻿@model IEnumerable<CadastroProfessores.Model.Aluno>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .importar {
+        margin: 10px 0 10px 0;
+        border: dashed 1px #000;
+        padding: 10px;
+    }
+</style>
+
+<h1>Alunos</h1>
+
+<p>
+    <a asp-action="Cadastro" asp-route-IdProfessor="@ViewBag.IdProfessor">Cadastrar Aluno</a>
+</p>
+
+<table class="table" id="tbAlunos">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VlrMensalidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DtVencimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeProfessor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VlrMensalidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DtVencimento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeProfessor)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Cadastro", new { Id = item.Id, IdProfessor = ViewBag.IdProfessor }) |
+                    <a data-id="@item.Id" href="#" class="excluir">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<form enctype="multipart/form-data" method="post" action="@Url.Action("EnviarArquivo","Aluno")">
+    <input type="hidden" name="IdProfessor" value="@ViewBag.IdProfessor" />
+    <div class="row importar">
+
+        <div class="col-md-6">
+            <label>Importar Alunos</label>
+            <input type="file" class="form-control-file" name="file" accept=".txt"/>
+        </div>
+
+        <div class="col-md-6">
+            <input type="submit" id="bntEnviarArquivo" value="Enviar Arquivo" class="btn btn-primary" style="margin-top: 20px; display:none" />
+        </div>
+    </div>
+</form>
+<p>
+    <a asp-action="index" asp-controller="professor">Voltar</a>
+</p>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/aluno.js"></script>

@@ -1,0 +1,54 @@
+﻿@model CadastroProfessores.Model.Aluno
+
+@{
+    ViewData["Title"] = "Cadastro";
+}
+
+<link href="~/lib/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" />
+
+<h1>Cadastro</h1>
+
+<h4>Aluno</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Gravar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" class="form-control" />
+            <input type="hidden" asp-for="IdProfessor" class="form-control" value="@ViewBag.IdProfessor" />
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VlrMensalidade" class="control-label"></label>
+                <input asp-for="VlrMensalidade" class="form-control" maxlength="8" />
+                <span asp-validation-for="VlrMensalidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DtVencimento" class="control-label"></label>
+                <input asp-for="DtVencimento" class="form-control" maxlength="10" type="text" />
+                <span asp-validation-for="DtVencimento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Gravar" class="btn btn-primary" />
+                <a asp-action="Index" asp-route-IdProfessor="@ViewBag.IdProfessor" class=" btn btn-outline-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-ui-1.12.1/jquery-ui.js"></script>
+<script src="~/lib/jquery-mask/jquery.mask.js"></script>
+<script>
+
+    $('#DtVencimento').mask('00/00/0000');
+    $('#VlrMensalidade').mask('#.##0,00', { reverse: true });
+
+
+    $("#DtVencimento").datepicker({
+        dateFormat: 'dd/mm/yy'
+    });
+
+</script>

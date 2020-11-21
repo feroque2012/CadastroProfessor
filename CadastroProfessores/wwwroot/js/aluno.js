@@ -1,0 +1,2 @@
+﻿$("#tbAlunos .excluir").click(function (e) { var $this = $(this); $.get("/aluno/excluir/" + $(this).data("id"), function (e) { if (e.erro == 0) { $this.closest('tr').remove(); } }) });
+$("input[type=file]").change(function () {    if ($(this).val() != '') {        $("#bntEnviarArquivo").css("display", "block");    } else {        $("#bntEnviarArquivo").css("display", "none");    }});
