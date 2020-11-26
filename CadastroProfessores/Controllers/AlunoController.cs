@@ -8,7 +8,7 @@ using CadastroProfessores.Model;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.Extensions.Configuration;
-
+ 
 namespace Cadastroalunoes.Controllers
 {
     public class AlunoController : Controller
